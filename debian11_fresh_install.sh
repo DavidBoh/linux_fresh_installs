@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #Script for Debian fresh install. Execute as root
-
+# Tested functional august 11 2022
 # Modify /etc/apt/sources.list file for debian 11. Includes non free repos. 
 
 echo "deb http://deb.debian.org/debian bullseye main contrib non-free" > /etc/apt/sources.list
