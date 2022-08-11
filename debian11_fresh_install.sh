@@ -22,6 +22,7 @@ apt dist-upgrade -y
 apt autoremove -y
 
 # remove unwanted apps (feel free to modify)
+# test libreoffice-core instead of libreoffice*
 apt purge evolution libreoffice* gnome-nibbles gnome-tetravex gnome-taquin tali swell-foop five-or-more gnome-mines gnome-robots quadrapassel hitori gnome-2048 aisleriot iagno gnome-klotski lightsoff four-in-a-row gnome-mahjongg -y
 apt autoremove -y
 
