@@ -27,7 +27,7 @@ apt update
 apt dist-upgrade -y
 apt autoremove -y
 
-apt install pavucontrol python3-pip gcc g++ git virt-manager fish zsh gnome-shell-extension-dash-to-dock gnome-extensions-app obs-studio gimp vlc transmission flatpak bridge-utils libvirt virt-install qemu-kvm tlp tlp-rdw -y
+apt install pavucontrol python3-pip gcc g++ git virt-manager fish zsh gnome-tweak-tool obs-studio gimp vlc transmission flatpak bridge-utils qemu-kvm tlp tlp-rdw -y
 # configure flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
