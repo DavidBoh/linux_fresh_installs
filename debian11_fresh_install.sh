@@ -23,7 +23,7 @@ apt autoremove -y
 apt purge evolution libreoffice* gnome-nibbles gnome-tetravex gnome-taquin tali swell-foop five-or-more gnome-mines gnome-robots quadrapassel hitori gnome-2048 aisleriot iagno gnome-klotski lightsoff four-in-a-row gnome-mahjongg -y
 apt autoremove -y
 
-apt --purge remove libva2
+apt --purge remove libva2 -y
 
 apt update
 apt dist-upgrade -y
