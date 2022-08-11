@@ -1,2 +1,2 @@
 # linux_fresh_installs
-My basic fresh install scripts for Fedora and Debian
+My personal fresh install scripts for Fedora and Debian. 
