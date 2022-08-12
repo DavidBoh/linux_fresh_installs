@@ -42,3 +42,34 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 
 # Enable laptop battery saver service. 
 systemctl enable tlp
+
+# Block distracting websites. Modify as needed. 
+
+echo "# Facebook" >> /etc/hosts
+echo "127.0.0.1   www.facebook.com" >> /etc/hosts
+echo "127.0.0.1   facebook.com" >> /etc/hosts
+echo "127.0.0.1   login.facebook.com" >> /etc/hosts
+echo "127.0.0.1   www.login.facebook.com" >> /etc/hosts
+echo "127.0.0.1   fbcdn.net" >> /etc/hosts
+echo "127.0.0.1   www.fbcdn.net" >> /etc/hosts
+echo "127.0.0.1   fbcdn.com" >> /etc/hosts
+echo "127.0.0.1   www.fbcdn.com" >> /etc/hosts
+echo "127.0.0.1   static.ak.fbcdn.net" >> /etc/hosts
+echo "127.0.0.1   static.ak.connect.facebook.com" >> /etc/hosts
+echo "127.0.0.1   connect.facebook.net" >> /etc/hosts
+echo "127.0.0.1   www.connect.facebook.net" >> /etc/hosts
+echo "127.0.0.1   apps.facebook.com" >> /etc/hosts
+echo "0.0.0.0     meta.com" >> /etc/hosts
+echo "0.0.0.0     www.meta.com" >> /etc/hosts
+echo "# Twitter" >> /etc/hosts
+echo "127.0.0.1   www.twitter.com" >> /etc/hosts
+echo "127.0.0.1   twitter.com" >> /etc/hosts
+echo "# IG" >> /etc/hosts
+echo "127.0.0.1   instagram.com" >> /etc/hosts
+echo "127.0.0.1   www.instagram.com" >> /etc/hosts
+echo "#Amazon" >> /etc/hosts
+echo "127.0.0.1   www.amazon.com" >> /etc/hosts
+echo "127.0.0.1   amazon.com" >> /etc/hosts
+echo "# Wasap" >> /etc/hosts
+echo "127.0.0.1   web.whatsapp.com" >> /etc/hosts
+
