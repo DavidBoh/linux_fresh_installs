@@ -4,34 +4,51 @@
 #Tested functional august 11 2022
 
 #Add fastest mirror to dnf (faster dnf download)
+echo "Adding fastest mirror to /etc/dnf/dnf.conf file"
 echo "fastestmirror = true" >> /etc/dnf/dnf.conf
 
 #system upgrade
+echo "dnf upgrading"
 dnf upgrade -y
 
+
 # (optional) remove nano default editor, install vim default editor
+echo "Replacing nano for VIM"
 dnf remove nano-default-editor -y
 dnf install vim-default-editor -y
 
+echo "dnf upgrading"
+dnf upgrade -y
+
 # INSTALL AND CONFIG RPM FUSION, MAKE SURE TO KEEP UPDATED
+echo "Installing RPM fusion"
 dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y
 dnf groupupdate core -y
 dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin -y
 dnf groupupdate sound-and-video -y
 
+echo "dnf upgrading"
+dnf upgrade -y
+
 #Install useful apps, feel free to modify
-dnf install pavucontrol python3-pip gcc g++ git thunderbird virt-manager fish zsh gnome-shell-extension-dash-to-dock gnome-extensions-app obs-studio gimp vlc transmission mediawriter bridge-utils libvirt virt-install qemu-kvm tlp tlp-rdw -y
+dnf install util-linux-user deja-dup pavucontrol python3-pip gcc g++ git thunderbird virt-manager fish zsh gnome-shell-extension-dash-to-dock gnome-extensions-app obs-studio gimp vlc transmission mediawriter bridge-utils libvirt virt-install qemu-kvm tlp tlp-rdw -y
+
+echo "dnf upgrading"
+dnf upgrade -y
 
 #Enable flatpaks
+echo "Enabling flatpaks"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 #kdenlive   
 
-#enable laptop battery saver service 
+#enable laptop battery optimizer service 
+echo "Activating tlp battery optimizer"
 systemctl enable tlp
+systemctl start tlp
 
 # Block distracting websites. Modify as needed. 
-
+echo "Blocking websites in /etc/hosts file"
 echo "# Facebook" >> /etc/hosts
 echo "127.0.0.1   www.facebook.com" >> /etc/hosts
 echo "127.0.0.1   facebook.com" >> /etc/hosts
