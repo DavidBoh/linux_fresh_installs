@@ -6,6 +6,7 @@
 #Add fastest mirror to dnf (faster dnf download)
 echo "Adding fastest mirror to /etc/dnf/dnf.conf file"
 echo "fastestmirror = true" >> /etc/dnf/dnf.conf
+echo "Success"
 
 #system upgrade
 echo "dnf upgrading"
@@ -31,7 +32,10 @@ echo "dnf upgrading"
 dnf upgrade -y
 
 #Install useful apps, feel free to modify
+echo "Installing applications"
 dnf install util-linux-user deja-dup pavucontrol python3-pip gcc g++ git thunderbird virt-manager fish zsh gnome-shell-extension-dash-to-dock gnome-extensions-app obs-studio gimp vlc transmission mediawriter bridge-utils libvirt virt-install qemu-kvm tlp tlp-rdw -y
+#kdenlive   
+
 
 echo "dnf upgrading"
 dnf upgrade -y
@@ -39,13 +43,13 @@ dnf upgrade -y
 #Enable flatpaks
 echo "Enabling flatpaks"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-
-#kdenlive   
+echo "Success"
 
 #enable laptop battery optimizer service 
 echo "Activating tlp battery optimizer"
 systemctl enable tlp
 systemctl start tlp
+echo "Success"
 
 # Block distracting websites. Modify as needed. 
 echo "Blocking websites in /etc/hosts file"
@@ -76,3 +80,4 @@ echo "127.0.0.1   www.amazon.com" >> /etc/hosts
 echo "127.0.0.1   amazon.com" >> /etc/hosts
 echo "# Wasap" >> /etc/hosts
 echo "127.0.0.1   web.whatsapp.com" >> /etc/hosts
+echo "Success. Script completed."
