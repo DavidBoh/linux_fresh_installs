@@ -33,7 +33,11 @@ dnf upgrade -y
 
 #Install useful apps, feel free to modify
 echo "Installing applications"
-dnf install util-linux-user deja-dup pavucontrol python3-pip gcc g++ git thunderbird virt-manager fish zsh gnome-shell-extension-dash-to-dock gnome-extensions-app obs-studio gimp vlc transmission mediawriter bridge-utils libvirt virt-install qemu-kvm tlp tlp-rdw -y
+dnf install util-linux-user deja-dup pavucontrol python3-pip python3-dev gcc g++ git thunderbird virt-manager \
+fish zsh gnome-shell-extension-dash-to-dock gnome-extensions-app obs-studio gimp vlc transmission \
+mediawriter bridge-utils libvirt virt-install qemu-kvm tlp tlp-rdw mono-complete nodejs \
+java-latest-openjdk npm -y
+
 #kdenlive   
 
 
