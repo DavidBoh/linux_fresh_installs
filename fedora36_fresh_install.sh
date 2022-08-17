@@ -88,8 +88,9 @@ systemctl start tlp
 echo "Success"
 
 echo "setting up .vimrc file"
-#Set up .vimrc
-cat <<EOT >> ~/.vimrc
+#Set up .vimrc. 
+#TO DO. NEED TO FIND A WAY TO PLACE THIS FILE DIRECLY UNDER THE USER'S HOME DIR, REGARDLESS OF USERNAME. 
+cat <<EOT >> /home/vimrc
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
