@@ -35,7 +35,7 @@ dnf upgrade -y
 echo "Installing applications"
 dnf install util-linux-user deja-dup pavucontrol python3-pip python3-devel gcc g++ git thunderbird virt-manager \
 fish zsh gnome-shell-extension-dash-to-dock gnome-extensions-app obs-studio gimp vlc transmission \
-mediawriter bridge-utils libvirt virt-install qemu-kvm tlp tlp-rdw mono-complete nodejs \
+mediawriter bridge-utils libvirt virt-install qemu-kvm tlp tlp-rdw mono-complete nodejs curl wget \
 java-latest-openjdk npm -y
 
 #kdenlive   
@@ -48,6 +48,29 @@ dnf upgrade -y
 echo "Enabling flatpaks"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 echo "Success"
+
+#Installing Go
+dnf install golang -y
+mkdir -p $HOME/go
+echo 'export GOPATH=$HOME/go' >> $HOME/.bashrc
+source $HOME/.bashrc
+
+echo "dnf upgrading"
+dnf upgrade -y
+
+#Installing Rust
+curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
+
+echo "dnf upgrading"
+dnf upgrade -y
+
+#Installing Dotnet 
+dnf install dotnet-sdk-6.0 -y
+dnf install aspnetcore-runtime-6.0 -y
+dnf install dotnet-runtime-6.0 -y
+
+echo "dnf upgrading"
+dnf upgrade -y
 
 #enable laptop battery optimizer service 
 echo "Activating tlp battery optimizer"
