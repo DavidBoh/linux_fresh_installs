@@ -36,8 +36,7 @@ echo "Installing applications"
 dnf install util-linux-user deja-dup pavucontrol python3-pip python3-devel gcc g++ git thunderbird virt-manager \
 fish zsh gnome-shell-extension-dash-to-dock gnome-extensions-app obs-studio gimp vlc transmission \
 mediawriter bridge-utils libvirt virt-install qemu-kvm tlp tlp-rdw mono-complete nodejs curl wget \
-cmake mono-devel qemu
-
+cmake mono-devel qemu bat \
 java-latest-openjdk npm -y
 
 #kdenlive   
@@ -87,10 +86,41 @@ systemctl enable tlp
 systemctl start tlp
 echo "Success"
 
+#---------------------------------
+
+#Configure User permissions (security)
+echo "Configuring users and user permissions"
+useradd -c "admin" -m -s /bin/bash admin
+echo "Please introduce password for admin user"
+passwd admin
+sudo usermod -g wheel admin
+# Make admin user invisible from login screen
+touch /var/lib/AccountsService/users/admin
+cat <<EOT >> /var/lib/AccountsService/users/admin
+[User]
+Language=
+XSession=gnome
+SystemAccount=true
+EOT
+
+# Home username variable
+home_user_name=$(ls /home/ | grep -wv admin)
+
+gpasswd -d $(home_user_name) wheel
+
+# Configure User for VM acces
+echo "Configuring user for SSH access"
+touch /etc/sudoers.d/filename
+cat <<EOT >>/etc/sudoers.d/filename
+$home_user_name ALL=(root) /bin/virsh
+EOT
+
+#---------------------------------
+
 echo "setting up .vimrc file"
 #Set up .vimrc. 
-#TO DO. NEED TO FIND A WAY TO PLACE THIS FILE DIRECLY UNDER THE USER'S HOME DIR, REGARDLESS OF USERNAME. 
-cat <<EOT >> /home/vimrc
+
+cat <<EOT >> /home/$home_user_name/.vimrc
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -140,35 +170,38 @@ filetype indent on
 set autoindent
 EOT
 
-
+#---------------------------------
 
 # Block distracting websites. Modify as needed. 
-echo "Blocking websites in /etc/hosts file"
-echo "# Facebook" >> /etc/hosts
-echo "127.0.0.1   www.facebook.com" >> /etc/hosts
-echo "127.0.0.1   facebook.com" >> /etc/hosts
-echo "127.0.0.1   login.facebook.com" >> /etc/hosts
-echo "127.0.0.1   www.login.facebook.com" >> /etc/hosts
-echo "127.0.0.1   fbcdn.net" >> /etc/hosts
-echo "127.0.0.1   www.fbcdn.net" >> /etc/hosts
-echo "127.0.0.1   fbcdn.com" >> /etc/hosts
-echo "127.0.0.1   www.fbcdn.com" >> /etc/hosts
-echo "127.0.0.1   static.ak.fbcdn.net" >> /etc/hosts
-echo "127.0.0.1   static.ak.connect.facebook.com" >> /etc/hosts
-echo "127.0.0.1   connect.facebook.net" >> /etc/hosts
-echo "127.0.0.1   www.connect.facebook.net" >> /etc/hosts
-echo "127.0.0.1   apps.facebook.com" >> /etc/hosts
-echo "0.0.0.0     meta.com" >> /etc/hosts
-echo "0.0.0.0     www.meta.com" >> /etc/hosts
-echo "# Twitter" >> /etc/hosts
-echo "127.0.0.1   www.twitter.com" >> /etc/hosts
-echo "127.0.0.1   twitter.com" >> /etc/hosts
-echo "# IG" >> /etc/hosts
-echo "127.0.0.1   instagram.com" >> /etc/hosts
-echo "127.0.0.1   www.instagram.com" >> /etc/hosts
-echo "#Amazon" >> /etc/hosts
-echo "127.0.0.1   www.amazon.com" >> /etc/hosts
-echo "127.0.0.1   amazon.com" >> /etc/hosts
-echo "# Wasap" >> /etc/hosts
-echo "127.0.0.1   web.whatsapp.com" >> /etc/hosts
+echo "Blocking distracting websites in /etc/hosts file"
+cat <<EOT >> /etc/hosts
+# Facebook
+127.0.0.1   www.facebook.com
+127.0.0.1   facebook.com
+127.0.0.1   login.facebook.com
+127.0.0.1   www.login.facebook.com
+127.0.0.1   fbcdn.net
+127.0.0.1   www.fbcdn.net
+127.0.0.1   fbcdn.com
+127.0.0.1   www.fbcdn.com
+127.0.0.1   static.ak.fbcdn.net
+127.0.0.1   static.ak.connect.facebook.com
+127.0.0.1   connect.facebook.net
+127.0.0.1   www.connect.facebook.net
+127.0.0.1   apps.facebook.com
+0.0.0.0     meta.com
+0.0.0.0     www.meta.com
+# Twitter
+127.0.0.1   www.twitter.com
+127.0.0.1   twitter.com
+# IG
+127.0.0.1   instagram.com
+127.0.0.1   www.instagram.com
+#Amazon
+127.0.0.1   www.amazon.com
+127.0.0.1   amazon.com
+# Wasap
+127.0.0.1   web.whatsapp.com
+EOT
+
 echo "Success. Script completed."
