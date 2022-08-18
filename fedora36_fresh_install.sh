@@ -1,7 +1,6 @@
 #!/bin/sh
 
 #Script for Fedora fresh install. Execute as root
-#Tested functional august 11 2022
 
 #Add fastest mirror to dnf (faster dnf download)
 echo "Adding fastest mirror to /etc/dnf/dnf.conf file"
