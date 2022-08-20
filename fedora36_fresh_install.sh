@@ -40,7 +40,6 @@ java-latest-openjdk npm -y
 
 #kdenlive   
 
-
 echo "dnf upgrading"
 dnf upgrade -y
 
@@ -49,12 +48,14 @@ echo "Enabling flatpaks"
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 echo "Success"
 
+# Home username variable
+home_user_name=$(ls /home/ | grep -wv admin)
+
 echo "Installing Go (golang)"
 #Installing Go
 dnf install golang -y
-mkdir -p $HOME/go
-echo 'export GOPATH=$HOME/go' >> $HOME/.bashrc
-source $HOME/.bashrc
+mkdir -p /home/$home_user_name/go
+echo 'export GOPATH=/home/$(ls /home/ | grep -wv admin)/go' >> /home/$home_user_name/.bashrc
 
 echo "dnf upgrading"
 dnf upgrade -y
@@ -102,17 +103,18 @@ XSession=gnome
 SystemAccount=true
 EOT
 
-# Home username variable
-home_user_name=$(ls /home/ | grep -wv admin)
 
 gpasswd -d $home_user_name wheel
 
+#TESTING
+<<com
 # Configure User for VM acces
 echo "Configuring user for SSH access"
 touch /etc/sudoers.d/filename
 cat <<EOT >>/etc/sudoers.d/filename
 $home_user_name ALL=(root) /bin/virsh
 EOT
+com
 
 #---------------------------------
 
