@@ -1,4 +1,3 @@
-
 #!/bin/sh
 
 #Script for Fedora fresh install. Execute as root
