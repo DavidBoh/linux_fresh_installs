@@ -205,4 +205,64 @@ cat <<EOT >> /etc/hosts
 127.0.0.1   web.whatsapp.com
 EOT
 
+# Configure BASHRC and home/user/bin
+echo "Configuring home user bin directory"
+
+cat <<EOT >> /home/$home_user_name/.bashrc
+export PATH="/home/$(ls /home/ | grep -wv admin)/bin:$PATH"
+EOT
+
+source /home/$home_user_name/.bashrc
+mkdir /home/$home_user_name/bin
+chown -R $home_user_name:$home_user_name /home/$home_user_name/bin
+
+#conigure pytouch
+echo "configuring pytouch"
+touch /home/$home_user_name/bin/pytouch
+chown $home_user_name:$home_user_name /home/$home_user_name/bin/pytouch
+chmod +x /home/$home_user_name/bin/pytouch
+
+cat <<EOT >> /home/$home_user_name/bin/pytouch
+#!/usr/bin/env python3
+#Author David Boh // herrboh@gmail.com
+import os, sys
+filename = sys.argv[2]
+flag = sys.argv[1]
+def createpy():
+    file_ext = ".py"
+    with open("{}{}".format(filename,file_ext), "w") as file:
+        file.write("#!/usr/bin/env python3\n")
+        file.write("\n")
+        file.write("def main():")
+        file.write("\n\n\n\n")
+        file.write("if __name__ == '__main__':")
+        file.write("\n\tmain()")
+    final_name= "{}{}".format(filename,file_ext)
+    os.chmod(final_name,0o755)
+    print("\nFile {} has been created\n".format(final_name))
+def createbash():
+    file_ext = ".sh"
+    with open("{}{}".format(filename,file_ext), "w") as file:
+        file.write("#!/bin/sh\n")
+    final_name= "{}{}".format(filename,file_ext)
+    os.chmod(final_name,0o755)
+    print("\nFile {} has been created\n".format(final_name))
+    file.close()
+    
+def creation():
+    """this script creates a .py or .sh file based on flags passed when exec    uted (-p or -s).Each file will be created with execute permissions and inside of each file, the first line wille include a shebang #! line argument"""
+    
+    file_ext = ""
+# add try statement        
+    if flag == '-p':
+        createpy()
+    elif flag == '-s':
+        createbash()
+    else:
+        flag != '-s' or flag != '-p'
+        print("\nInvalid Input\n")
+# catch no parameters error. 
+creation()
+EOT
+
 echo "Success. Script completed."
