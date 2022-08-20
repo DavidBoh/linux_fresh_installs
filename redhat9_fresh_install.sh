@@ -1,6 +1,7 @@
 #!/bin/sh
 
-#Script for Fedora fresh install. Execute as root
+#Script for Red Hat 9 fresh install. Execute as root.
+#Tested functional August 20
 
 #Add fastest mirror to dnf (faster dnf download)
 echo "Adding fastest mirror to /etc/dnf/dnf.conf file"
@@ -15,13 +16,13 @@ dnf upgrade -y
 #Enabling EPEL
 echo "Enabling EPEL"
 subscription-manager repos --enable codeready-builder-for-rhel-9-$(arch)-rpms
-dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm -y
 echo "Success"
 
 # INSTALL AND CONFIG RPM FUSION, MAKE SURE TO KEEP UPDATED
 echo "Installing RPM fusion"
-sudo dnf install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm -E %rhel).noarch.rpm
-sudo dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm
+sudo dnf install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm -E %rhel).noarch.rpm -y
+sudo dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm -y
 dnf groupupdate core -y
 dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin -y
 dnf groupupdate sound-and-video -y
@@ -72,8 +73,6 @@ dnf upgrade -y
 #-----------------------------------
 # Configure BASHRC and home/user/bin
 
-
-
 cat <<EOT >> /home/$home_user_name/.bashrc
 export PATH="/home/$(ls /home/ | grep -wv admin)/bin:$PATH"
 EOT
@@ -85,6 +84,8 @@ chown -R $home_user_name:$home_user_name /home/$home_user_name/bin
 #conigure pytouch
 touch /home/$home_user_name/bin/pytouch
 chown $home_user_name:$home_user_name /home/$home_user_name/bin/pytouch
+chmod +x /home/$home_user_name/bin/pytouch
+
 cat <<EOT >> /home/$home_user_name/bin/pytouch
 #!/usr/bin/env python3
 #Author David Boh // herrboh@gmail.com
