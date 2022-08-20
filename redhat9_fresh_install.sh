@@ -72,6 +72,7 @@ dnf upgrade -y
 
 #-----------------------------------
 # Configure BASHRC and home/user/bin
+echo "Configuring home user bin directory"
 
 cat <<EOT >> /home/$home_user_name/.bashrc
 export PATH="/home/$(ls /home/ | grep -wv admin)/bin:$PATH"
@@ -82,6 +83,7 @@ mkdir /home/$home_user_name/bin
 chown -R $home_user_name:$home_user_name /home/$home_user_name/bin
 
 #conigure pytouch
+echo "configuring pytouch"
 touch /home/$home_user_name/bin/pytouch
 chown $home_user_name:$home_user_name /home/$home_user_name/bin/pytouch
 chmod +x /home/$home_user_name/bin/pytouch
