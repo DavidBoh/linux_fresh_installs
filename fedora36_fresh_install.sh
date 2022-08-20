@@ -105,7 +105,7 @@ EOT
 # Home username variable
 home_user_name=$(ls /home/ | grep -wv admin)
 
-gpasswd -d $(home_user_name) wheel
+gpasswd -d $home_user_name wheel
 
 # Configure User for VM acces
 echo "Configuring user for SSH access"
