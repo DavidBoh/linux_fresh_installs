@@ -23,7 +23,10 @@ apt autoremove -y
 
 # remove unwanted apps (feel free to modify)
 
-apt purge evolution libreoffice gnome-nibbles gnome-tetravex gnome-taquin tali swell-foop five-or-more gnome-mines gnome-robots quadrapassel hitori gnome-2048 aisleriot iagno gnome-klotski lightsoff four-in-a-row gnome-mahjongg -y
+apt purge evolution libreoffice gnome-nibbles \
+gnome-tetravex gnome-taquin tali swell-foop five-or-more \
+gnome-mines gnome-robots quadrapassel hitori gnome-2048 \
+aisleriot iagno gnome-klotski lightsoff four-in-a-row gnome-mahjongg -y
 apt autoremove -y
 
 #remove conflicting package
@@ -34,7 +37,12 @@ apt dist-upgrade -y
 apt autoremove -y
 
 #install useful apps (fell free to modify)
-apt install kdenlive thunderbird pavucontrol python3-pip gcc g++ git virt-manager fish zsh gnome-tweak-tool obs-studio gimp vlc transmission flatpak bridge-utils qemu-kvm tlp tlp-rdw -y
+apt install kdenlive thunderbird pavucontrol \
+python3-pip gcc g++ git virt-manager fish \
+zsh gnome-tweak-tool \
+obs-studio gimp vlc transmission flatpak \
+firmware-linux blueman firmware-iwlwifi \
+bridge-utils qemu-kvm tlp tlp-rdw -y
 # configure flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
