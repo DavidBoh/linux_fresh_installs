@@ -45,6 +45,9 @@ firmware-linux blueman firmware-iwlwifi \
 bridge-utils qemu-kvm tlp tlp-rdw -y
 # configure flatpak
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+#mediawriter
+echo "installing fedora media writer"
+flatpak install flathub org.fedoraproject.MediaWriter -y
 
 # Enable laptop battery saver service. 
 systemctl start tlp
