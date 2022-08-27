@@ -35,7 +35,7 @@ echo "Installing applications"
 dnf install util-linux-user deja-dup pavucontrol python3-pip python3-devel gcc g++ git thunderbird virt-manager \
 fish zsh gnome-shell-extension-dash-to-dock gnome-extensions-app obs-studio gimp vlc transmission \
 mediawriter bridge-utils libvirt virt-install qemu-kvm tlp tlp-rdw mono-complete nodejs curl wget \
-cmake mono-devel qemu bat \
+cmake mono-devel qemu bat gparted \
 java-latest-openjdk npm -y
 
 #kdenlive   
