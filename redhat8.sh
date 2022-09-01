@@ -17,6 +17,7 @@ dnf upgrade -y
 echo "Enabling EPEL"
 subscription-manager repos --enable codeready-builder-for-rhel-8-$(arch)-rpms
 dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y
+/usr/bin/crb enable
 echo "Success"
 
 # INSTALL AND CONFIG RPM FUSION, MAKE SURE TO KEEP UPDATED
@@ -184,7 +185,6 @@ export PATH="/home/$(ls /home/ | grep -wv admin)/bin:$PATH"
 EOT
 
 source /home/$home_user_name/.bashrc
-mkdir /home/$home_user_name/bin
 chown -R $home_user_name:$home_user_name /home/$home_user_name/bin
 
 echo "Success. Script completed."
