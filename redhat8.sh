@@ -35,7 +35,8 @@ dnf upgrade -y
 
 #Install useful apps, feel free to modify
 echo "Installing applications"
-dnf install python3-pip python3-devel fish \
+dnf install python3-pip python3-devel fish zsh tcsh \
+python3-pip python3-devel gcc g++ git \
 mono-complete nodejs flatpak \
 cmake mono-devel tlp tlp-rdw \
 java-11-openjdk java-17-openjdk npm -y
