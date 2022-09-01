@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #Script for CentOs Stream 9 fresh install. Execute as root.
-
+#Tested functional September 1st
 
 #Add fastest mirror to dnf (faster dnf download)
 echo "Adding fastest mirror to /etc/dnf/dnf.conf file"
