@@ -54,6 +54,7 @@ dnf install tlp tlp-rdw -y
 dnf install java-11-openjdk -y
 dnf install java-17-openjdk -y
 dnf install npm -y
+dnf install ntfs-3g -y
 
 echo "dnf upgrading"
 dnf upgrade -y
