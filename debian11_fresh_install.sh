@@ -37,7 +37,7 @@ apt dist-upgrade -y
 apt autoremove -y
 
 #install useful apps (fell free to modify)
-apt install kdenlive thunderbird pavucontrol \
+apt install make kdenlive thunderbird pavucontrol \
 python3-pip gcc g++ git virt-manager fish \
 zsh gnome-tweak-tool \
 obs-studio gimp vlc transmission flatpak \
