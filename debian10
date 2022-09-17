@@ -37,7 +37,7 @@ apt autoremove -y
 
 #install useful apps (fell free to modify)
 apt install pavucontrol \
-gcc git fish vim curl \
+gcc git fish vim make curl \
 zsh gnome-tweak-tool \
 obs-studio vlc transmission flatpak \
 firmware-linux blueman firmware-iwlwifi \
