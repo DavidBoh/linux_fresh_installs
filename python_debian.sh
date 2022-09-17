@@ -13,7 +13,7 @@ apt autoremove -y
 
 apt install libffi-dev \
 libgdbm-dev libsqlite3-dev \
-libssl-dev zlib1g-dev -y
+libssl-dev zlib1g-dev make -y
 
 export PYTHON_VERSION=3.10.7
 export PYTHON_MAJOR=3
