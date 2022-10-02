@@ -39,7 +39,7 @@ apt autoremove -y
 #install useful apps (fell free to modify)
 apt install make kdenlive thunderbird pavucontrol \
 python3-pip gcc g++ git virt-manager fish \
-zsh gnome-tweak-tool \
+zsh gnome-tweak-tool firmware-realtek\
 obs-studio gimp vlc transmission flatpak \
 firmware-linux blueman firmware-iwlwifi \
 bridge-utils qemu-kvm tlp tlp-rdw -y
