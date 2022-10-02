@@ -36,7 +36,7 @@ apt dist-upgrade -y
 apt autoremove -y
 
 #install useful apps (fell free to modify)
-apt install pavucontrol \
+apt install pavucontrol firmware-realtek\
 gcc git fish vim make curl \
 zsh gnome-tweak-tool \
 obs-studio vlc transmission flatpak \
