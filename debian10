@@ -75,6 +75,14 @@ chmod +x /home/$home_user_name/bin/pytouch
 
 cat <<EOT >> /home/$home_user_name/bin/pytouch
 #!/usr/bin/env python3
+#Author David Boh // herrboh@gmail.com
+
+# TO DO 
+# Avoid file overwrite
+# if user provides file extension (.py or .sh) make sure to delete .py part to avoid
+# cases of files named file.py.py - use regexes to fix this. 
+# include more flags for different types of python files, or use cases. 
+
 import os, sys
 
 try:
@@ -160,6 +168,7 @@ def main():
         creation()
     else:
         print("",end='')
+
 main()
 EOT
 
