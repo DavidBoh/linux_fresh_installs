@@ -67,22 +67,11 @@ dnf install golang -y
 mkdir -p /home/$home_user_name/go
 echo 'export GOPATH=/home/$(ls /home/ | grep -wv admin)/go' >> /home/$home_user_name/.bashrc
 
-
 echo "dnf upgrading"
 dnf upgrade -y
 
-echo "Installing Rust"
-#Installing Rust
-curl --proto '=https' --tlsv1.3 https://sh.rustup.rs -sSf | sh
-
 echo "dnf upgrading"
 dnf upgrade -y
-
-echo "Installing Dotnet"
-#Installing Dotnet 
-dnf install dotnet-sdk-6.0 -y
-dnf install aspnetcore-runtime-6.0 -y
-dnf install dotnet-runtime-6.0 -y
 
 echo "dnf upgrading"
 dnf upgrade -y
@@ -114,12 +103,38 @@ chmod +x /home/$home_user_name/bin/pytouch
 cat <<EOT >> /home/$home_user_name/bin/pytouch
 #!/usr/bin/env python3
 #Author David Boh // herrboh@gmail.com
+
+# TO DO 
+# Avoid file overwrite
+# if user provides file extension (.py or .sh) make sure to delete .py part to avoid
+# cases of files named file.py.py - use regexes to fix this. 
+# include more flags for different types of python files, or use cases. 
+
 import os, sys
 
-filename = sys.argv[2]
-flag = sys.argv[1]
+try:
+    filename = sys.argv[2]
+    flag = sys.argv[1]
+except:
+    #Note: error type can make this piece of code work or not. 
+    print("Please include params -s for sh, -p for python")
+    #main function checks if the variable named 'flags' exists in global variables
 
 def createpy():
+    file_ext = ".py"
+    with open("{}{}".format(filename,file_ext), "w") as file:
+        file.write("#!/usr/bin/env python3\n")
+        file.write("\n")
+        file.write("def main():")
+        file.write("\n\n")
+        file.write("main()\n")
+
+    final_name= "{}{}".format(filename,file_ext)
+    os.chmod(final_name,0o755)
+    print("File {} has been created".format(final_name))
+    file.close()
+
+def createpy_main():
     file_ext = ".py"
     with open("{}{}".format(filename,file_ext), "w") as file:
         file.write("#!/usr/bin/env python3\n")
@@ -129,9 +144,11 @@ def createpy():
         file.write("if __name__ == '__main__':")
         file.write("\n\tmain()")
 
+
     final_name= "{}{}".format(filename,file_ext)
     os.chmod(final_name,0o755)
-    print("\nFile {} has been created\n".format(final_name))
+    print("File {} has been created".format(final_name))
+    file.close()
 
 def createbash():
     file_ext = ".sh"
@@ -139,7 +156,24 @@ def createbash():
         file.write("#!/bin/sh\n")
     final_name= "{}{}".format(filename,file_ext)
     os.chmod(final_name,0o755)
-    print("\nFile {} has been created\n".format(final_name))
+    print("File {} has been created".format(final_name))
+    file.close()
+
+def createc():
+  
+    file_ext = ".c"
+
+    with open("{}{}".format(filename,file_ext), "w") as file:
+        file.write("#include <stdio.h>\n")
+        file.write("#include <stdlib.h>\n")
+        file.write("\n")
+        file.write("int main(void){\n")
+        file.write("\tputs(\"Hello, world!\");\n")
+        file.write("\treturn EXIT_SUCCESS;\n")
+        file.write("}\n")
+
+    final_name = "{}{}".format(filename,file_ext)
+    print("File {} has been created".format(final_name))
     file.close()
     
 def creation():
@@ -147,16 +181,22 @@ def creation():
     
     file_ext = ""
 
-# add try statement        
     if flag == '-p':
         createpy()
     elif flag == '-s':
         createbash()
+    elif flag == '-c':
+        createc()
     else:
-        flag != '-s' or flag != '-p'
-        print("\nInvalid Input\n")
-# catch no parameters error. 
-creation()
+        print("Invalid Input")
+
+def main():
+    if 'flag' and 'filename' in globals(): 
+        creation()
+    else:
+        print("",end='')
+
+main()
 EOT
 
 # Block distracting websites. Modify as needed. 
