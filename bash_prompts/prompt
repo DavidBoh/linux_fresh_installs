@@ -1,4 +1,4 @@
-
+# **************** Custom bash prompt *******************************
 # get current branch in git repo
 function parse_git_branch() {
 	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
@@ -52,3 +52,4 @@ function nonzero_return() {
 }
 
 export PS1="\[\e[32m\]\A\[\e[m\] [\`nonzero_return\`] \`parse_git_branch\` \[\e[33m\]\u\[\e[m\]\[\e[35m\]@\[\e[m\]\[\e[33m\]\h\[\e[m\] \[\e[35m\]\W\[\e[m\]\\$ "
+# **************** End of custom bash prompt *******************************
