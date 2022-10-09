@@ -1,0 +1,6 @@
+#!/bin/sh
+# From one machine 10.10.10.2
+rsync -av -e ssh /home/user1/foldername user2@10.10.10.1:/home/user2/
+
+#From the other machine 0.10.10.1
+rsync -av -e ssh /home/user2/foldername user1@10.10.10.2:/home/user1/
