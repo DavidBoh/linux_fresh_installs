@@ -143,5 +143,6 @@ EOT
 
 source /home/$home_user_name/.bashrc
 chown -R $home_user_name:$home_user_name /home/$home_user_name/bin
+chown -R $home_user_name:$home_user_name /home/$home_user_name/go
 
 echo "Success. Script completed."
