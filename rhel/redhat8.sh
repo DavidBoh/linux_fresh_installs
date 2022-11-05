@@ -94,11 +94,11 @@ systemctl enable tlp
 systemctl start tlp
 echo "Success"
 
-#conigure pytouch
-echo "configuring pytouch"
-touch /home/$home_user_name/bin/pytouch
-chown $home_user_name:$home_user_name /home/$home_user_name/bin/pytouch
-chmod +x /home/$home_user_name/bin/pytouch
+#conigure touchpy
+echo "configuring touchpy"
+touch /home/$home_user_name/bin/touchpy
+chown $home_user_name:$home_user_name /home/$home_user_name/bin/touchpy
+chmod +x /home/$home_user_name/bin/touchpy
 
 
 
