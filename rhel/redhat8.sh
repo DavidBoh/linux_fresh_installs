@@ -39,7 +39,6 @@ echo "Installing applications"
 dnf install python3-pip -y
 dnf install python3-devel -y
 dnf install fish -y
-dnf install zsh -y
 dnf install tcsh -y
 dnf install python3-pip -y
 dnf install python3-devel -y 
