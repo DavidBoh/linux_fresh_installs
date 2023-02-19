@@ -26,8 +26,7 @@ sudo dnf install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release
 sudo dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm -y
 sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-$(uname -m)-rpms"
 sudo dnf groupupdate core -y
-sudo dnf groupupdate multimedia --setop="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin -y
-sudo dnf groupupdate sound-and-video -y
+
 echo "Success"
 
 echo "dnf upgrading"
@@ -39,9 +38,6 @@ echo "Installing applications"
 dnf install python3-pip -y
 dnf install python3-devel -y
 dnf install fish -y
-dnf install tcsh -y
-dnf install python3-pip -y
-dnf install python3-devel -y 
 dnf install gcc -y
 dnf install git -y
 dnf install mono-complete -y
