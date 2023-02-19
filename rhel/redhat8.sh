@@ -54,6 +54,8 @@ dnf install ntfs-3g -y
 echo "dnf upgrading"
 dnf upgrade -y
 
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
 home_user_name=$(ls /home/ | grep -wv admin)
 
 echo "Installing Go (golang)"
