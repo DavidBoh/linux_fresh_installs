@@ -23,8 +23,11 @@ echo "Success"
 # INSTALL AND CONFIG RPM FUSION, MAKE SURE TO KEEP UPDATED
 echo "Installing RPM fusion"
 sudo dnf install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm -E %rhel).noarch.rpm -y
+
 sudo dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm -y
-sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-$(uname -m)-rpms"
+
+sudo subscription-manager repos --enable "codeready-builder-for-rhel-8-$(uname -m)-rpms" 
+
 sudo dnf groupupdate core -y
 
 echo "Success"
@@ -41,20 +44,16 @@ dnf install fish -y
 dnf install gcc -y
 dnf install git -y
 dnf install mono-complete -y
-dnf install nodejs -y
-dnf install flatpak -y
 dnf install cmake -y
 dnf install mono-devel -y
 dnf install tlp tlp-rdw -y
 dnf install java-11-openjdk -y
 dnf install java-17-openjdk -y
-dnf install npm -y
 dnf install ntfs-3g -y
 
 echo "dnf upgrading"
 dnf upgrade -y
 
-flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 home_user_name=$(ls /home/ | grep -wv admin)
 
